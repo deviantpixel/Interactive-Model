@@ -1,0 +1,52 @@
+{
+  "states": [
+    {
+      "name": "Policies and Programs",
+      "id":1,
+      "parentId":0,
+      "appId": 0,
+      "content": "content here",
+      "hasMeasure": false,
+      "measuresId": 0,
+      "locationX": 0,
+      "locationY": 0,
+      "width":100
+    },
+    {
+      "name": "Health Factors",
+      "id":2,
+      "parentId":0,
+      "appId": 0,
+      "content": "content here",
+      "hasMeasure": false,
+      "measuresId": 0,
+      "locationX": 0,
+      "locationY": 0,
+      "width":100
+    },
+    {
+      "name": "Health Outcomes",
+      "id":3,
+      "parentId":0,
+      "appId": 0,
+      "content": "content here",
+      "hasMeasure": false,
+      "measuresId": 0,
+      "locationX": 0,
+      "locationY": 0,
+      "width":100
+    },
+    {
+      "name": "Length of Life 50%",
+      "id":4,
+      "parentId":3,
+      "appId": 0,
+      "content": "content here",
+      "hasMeasure": false,
+      "measuresId": 0,
+      "locationX": 0,
+      "locationY": 0,
+      "width":100
+    }
+  ]
+}
