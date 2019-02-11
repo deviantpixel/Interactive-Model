@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 
 class InteractiveModel extends Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.props.onStateChange(e);
+  }
+
   makeLabels = () => {
     /* This function iterates over all the data to return the corresponding group, box and label for each item */
     const { data } = this.props;
 
     return (<g id="states">
       { data.states.map((state, index) => (
-        <g id={`${state.id}-group`} key={index}>
-          <a href="/">
+        <g 
+          id={`${state.id}-group`} 
+          key={index}
+          onClick={(e) => this.handleChange(state, e)}
+        >
             <rect 
               x={state.locationX} 
               y={state.locationY}
@@ -16,24 +28,26 @@ class InteractiveModel extends Component {
               rx="4"
               ry="4"
               width={state.width}
-              class={`state-box ${state.id}-box`}
+              className={`state-box ${state.id}-box`}
             />
             <text 
               x={(state.width / 2) + state.locationX} 
               y={12 + state.locationY}
-              text-anchor="middle"
-            >{ state.name.map((name, index) => (
+              textAnchor="middle"
+            >{ state.name.map((name, nameIndex) => (
               <tspan 
+                key={nameIndex}
                 x={(state.width / 2) + state.locationX} 
-                dy={(this.lineOffset(index, 1.2)) + 'em'}
+                dy={(this.lineOffset(nameIndex, 1.2)) + 'em'}
               >{name}</tspan>
             )) }</text>
-          </a>
         </g>
       ))}
       </g>);
   }
 
+  /* text attributes dont support line breaks so this function is
+    used for calculating the offset of the line being printed */
   lineOffset = (line, spacing) => {
     if (line > 0) {
       return spacing;
@@ -47,7 +61,7 @@ class InteractiveModel extends Component {
     const { svgHeight, svgWidth } = this.props;
 
     return (
-      <svg class="interactive-model" viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
+      <svg className="interactive-model" viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
         {this.makeLabels()}
       </svg>
     );
